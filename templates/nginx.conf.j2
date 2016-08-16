@@ -5,10 +5,12 @@ pid        {{ nginx_pidfile }};
 
 worker_processes  {{ nginx_worker_processes }};
 
+{% if nginx_use_default_events %}
 events {
     worker_connections  {{ nginx_worker_connections }};
     multi_accept {{ nginx_multi_accept }};
 }
+{% endif %}
 
 {% if nginx_extra_conf_options %}
 {{ nginx_extra_conf_options }}
